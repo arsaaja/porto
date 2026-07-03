@@ -1,0 +1,456 @@
+:root {
+  --cream-bg: #faf6f0; /* Broken white/krem yang lebih soft sesuai mockup */
+  --gold: #c67b2b; /* Oranye/amber khas untuk highlight teks */
+  --gold-dark: #663f15; /* Cokelat hangat ikonik untuk tombol utama & title */
+  --brown-dark: #1c1a17; /* Hitam arang matte untuk teks utama agar kontras */
+  --yellow-badge: #fadca5; /* Kuning pastel lembut untuk badge di atas hero h1 */
+  --card-bg: rgba(255, 255, 255, 0.45); /* Glassmorphism semi-transparan */
+  --card-border: rgba(255, 255, 255, 0.7); /* Border tipis penguat efek kaca */
+  --text-muted: #605c56; /* Abu-abu hangat untuk deskripsi/paragraf */
+  --radius-lg: 28px;
+  --radius-md: 20px; /* Diubah sedikit lebih bulat agar lebih modern */
+  --radius-full: 999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Plus Jakarta Sans", "Poppins", sans-serif; /* Plus Jakarta Sans bikin look-nya mirip */
+  background: var(--cream-bg);
+  color: var(
+    --text-muted
+  ); /* Mayoritas teks biasa menggunakan warna agak diredam */
+  line-height: 1.6;
+  position: relative;
+}
+
+/* EFEK GLOW DI BACKGROUND ATAS */
+body::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    circle,
+    rgba(243, 198, 119, 0.35) 0%,
+    rgba(250, 246, 240, 0) 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--brown-dark);
+  font-weight: 800;
+}
+
+.highlight {
+  color: var(--gold);
+}
+
+/* NAVBAR */
+.navbar {
+  padding: 24px 20px 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  padding: 12px 28px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 32px rgba(102, 63, 21, 0.02);
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--brown-dark);
+  text-decoration: none;
+}
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--brown-dark);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+.btn-primary {
+  background: var(--gold-dark);
+  color: #fff;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: #523210;
+}
+
+/* HERO */
+.hero {
+  padding: 80px 20px 120px 20px;
+}
+.hero-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr; /* Sisi kiri teks sedikit lebih lebar */
+  gap: 60px;
+  align-items: center;
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--yellow-badge);
+  color: var(--gold);
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.hero-text h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 24px;
+  letter-spacing: -1px;
+}
+.hero-text h1 span {
+  color: var(--gold);
+  font-style: italic;
+}
+.hero-desc {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+.hero-image {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+}
+.hero-image img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: var(--radius-lg);
+  display: block;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+}
+.tag-float {
+  position: absolute;
+  bottom: 20px; /* Di mockup, letaknya di kanan bawah gambar */
+  right: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+}
+
+/* PROJECTS */
+.projects {
+  padding: 40px 20px 80px 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.projects h2 {
+  font-size: 2rem;
+  margin-bottom: 32px;
+  text-align: center;
+}
+.projects h2 span {
+  color: var(--gold);
+}
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.filter-btn {
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.filter-btn.active {
+  background: var(--gold-dark);
+  color: #fff;
+}
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.project-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-lg); /* Lebih membulat sesuai mockup */
+  padding: 16px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(102, 63, 21, 0.04);
+}
+.project-thumb {
+  width: 100%;
+  height: 220px;
+  background: #efece6;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.project-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.project-body {
+  padding: 0 8px 12px 8px;
+}
+.project-tags {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.tag {
+  background: transparent;
+  color: #a3846b;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0; /* Di mockup berupa tulisan text biasa tanpa background box */
+}
+.project-body h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+  color: var(--brown-dark);
+}
+.project-body p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* SKILLS (Di mockup dibungkus box glassmorphism besar) */
+.skills {
+  padding: 60px 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.skills h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.skills h2 span {
+  color: var(--gold);
+}
+.skills-container-box {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+.skill-group h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  color: var(--text-muted);
+}
+.skill-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  background: #f1ece4;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
+  padding: 6px 14px;
+  border-radius: 8px; /* Lebih kotak tumpul minimalis */
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* CERTIFICATIONS */
+.certifications {
+  padding: 60px 20px 100px 20px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+.certifications h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.certifications h2 span {
+  color: var(--gold);
+}
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.cert-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: center; /* Rata tengah secara vertikal */
+}
+.cert-icon {
+  background: #f3ece1;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.cert-info h4 {
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+  color: var(--brown-dark);
+}
+.cert-info p {
+  color: #9c958c;
+  font-size: 0.75rem;
+  margin-bottom: 0;
+}
+.cert-status {
+  display: none; /* Dihilangkan karena info status sudah masuk ke p tekstual terverifikasi */
+}
+
+/* FOOTER */
+.site-footer {
+  padding: 30px 20px;
+  background: transparent; /* Transparan, hanya dibatasi border top halus */
+  border-top: 1px solid #ede8e0;
+  max-width: 1140px;
+  margin: 60px auto 0 auto;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+.footer-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover {
+  color: var(--brown-dark);
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+  .hero-image {
+    justify-content: center;
+  }
+  .hero-desc {
+    margin: 0 auto 36px auto;
+  }
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .project-grid,
+  .cert-grid {
+    grid-template-columns: 1fr;
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .nav-links {
+    display: none;
+  }
+  .footer-inner {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
