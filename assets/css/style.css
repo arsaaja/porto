@@ -20,7 +20,7 @@
 
 body {
   font-family:
-    "Plus Jakarta Sans", "Poppins", sans-serif; /* Plus Jakarta Sans bikin look-nya mirip */
+    "Plus Jakarta Sans", "Manrope", sans-serif; /* Plus Jakarta Sans bikin look-nya mirip */
   background: var(--cream-bg);
   color: var(
     --text-muted
@@ -453,4 +453,135 @@ h4 {
     gap: 16px;
     text-align: center;
   }
+}
+/* ==========================================================================
+   KARTU SERTIFIKASI (STRUKTUR BARU & PROPORSIONAL)
+   ========================================================================== */
+.cert-grid {
+  display: grid;
+  /* Menggunakan minmax ideal agar responsif tanpa merusak layout */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  text-align: left;
+  align-items: stretch; /* Memaksa semua kartu dalam satu baris tingginya sama rata */
+}
+
+.cert-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Memastikan tautan mengisi penuh grid */
+}
+
+.cert-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Kartu otomatis memanjang ke bawah mengikuti kartu tertinggi */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* CONTAINER RESIZE RESOLUSI GAMBAR IDEAL */
+.cert-cover {
+  width: 100%;
+  height: 180px; /* Batas tinggi ideal untuk rasio sertifikat digital */
+  background: #efece6;
+  border-bottom: 1px solid var(--card-border);
+  overflow: hidden;
+  position: relative;
+}
+
+.cert-cover img {
+  width: 100%;
+  height: 100%;
+  /* Kunci utama: Gambar otomatis di-resize & dicrop proporsional jika melebihi batas */
+  object-fit: cover;
+  object-position: top center; /* Fokus crop dimulai dari bagian atas sertifikat */
+  transition: transform 0.5s ease;
+}
+
+/* KONTEN DETAIL DI BAWAH GAMBAR */
+.cert-body-content {
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  flex-grow: 1; /* Memaksa area teks mengisi sisa ruang bawah agar tombol/validity sejajar */
+  flex-direction: column; /* Mengubah susunan ke bawah agar teks mengalir rapi */
+}
+
+/* SINKRONISASI ICON & JUDUL SECARA HORIZONTAL */
+.cert-header-flex {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  width: 100%;
+}
+
+.cert-icon {
+  background: #f3ece1;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.cert-details {
+  flex-grow: 1;
+}
+
+.cert-details h4 {
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 2px;
+  color: var(--brown-dark);
+}
+
+.cert-issuer {
+  color: #9c958c;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* DESKRIPSI DAN MASA BERLAKU */
+.cert-description {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+
+.cert-validity {
+  margin-top: auto; /* Memaksa text masa berlaku nempel di paling bawah kartu */
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--gold);
+  background-color: rgba(198, 123, 43, 0.08);
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+/* HOVER EFFECT */
+.cert-card-link:hover .cert-card {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(102, 63, 21, 0.06);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.cert-card-link:hover .cert-cover img {
+  transform: scale(1.03);
 }

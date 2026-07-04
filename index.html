@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Muhammad Arsa Danendra | Portofolio Developer</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- Komponen Modular (Analog OOP HTML) -->
+    <include src="includes/header.html"></include>
+    <include src="includes/hero.html"></include>
+    <include src="includes/projects.html"></include>
+    <include src="includes/skills.html"></include>
+    <include src="includes/certifications.html"></include>
+    <include src="includes/footer.html"></include>
+
+    <script src="assets/js/script.js"></script>
+
+    <!-- Robot Pemuat Komponen Otomatis (Biar Gak Blank) -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("include").forEach((el) => {
+          const filePath = el.getAttribute("src");
+          if (filePath) {
+            fetch(filePath)
+              .then((response) => {
+                if (!response.ok) throw new Error("File tidak ditemukan");
+                return response.text();
+              })
+              .then((data) => {
+                // Mengganti tag <include> dengan isi HTML aslinya
+                el.insertAdjacentHTML("beforebegin", data);
+                el.remove();
+              })
+              .catch((err) => console.error("Gagal memuat " + filePath, err));
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
