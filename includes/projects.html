@@ -1,21 +1,11 @@
-<!-- Bagian Proyek Terpilih -->
 <section id="portofolio" class="projects">
   <h2>Proyek <span class="highlight">Terpilih</span></h2>
 
-  <div class="filter-tabs">
-    <button class="filter-btn active" data-filter="all">SEMUA</button>
-    <button class="filter-btn" data-filter="iot">IoT</button>
-    <button class="filter-btn" data-filter="laravel">Laravel</button>
-    <button class="filter-btn" data-filter="ai">Artificial Intelligence</button>
-  </div>
-
   <div class="project-grid">
-    <!-- Proyek 1: CoCaIne (iot, laravel) -->
     <a
       href="https://github.com/arsaaja/cocaine-cc.git"
       target="_blank"
       class="project-link"
-      data-category="iot,laravel"
     >
       <div class="project-card">
         <div class="project-thumb">
@@ -28,7 +18,7 @@
           </div>
           <h3>SISTEM CoCalne</h3>
           <p>
-            Project manager, melakukan integrasi hardware ESP32, RFID, dan
+            Project manager, melakukan integrasi hardware ESP32, RFID, and
             sensor warna dengan Laravel REST API untuk pemrosesan data transaksi
             real-time secara efisien.
           </p>
@@ -41,12 +31,10 @@
       </div>
     </a>
 
-    <!-- Proyek 3: AI Fruit Detector (ai) -->
     <a
       href="https://deteksi-buah-segar-ai.vercel.app/"
       target="_blank"
       class="project-link"
-      data-category="ai"
     >
       <div class="project-card">
         <div class="project-thumb">
@@ -77,12 +65,10 @@
       </div>
     </a>
 
-    <!-- Proyek 4: BRL Fashion (laravel) -->
     <a
       href="https://brl-fashion-production.up.railway.app/login"
       target="_blank"
       class="project-link"
-      data-category="laravel"
     >
       <div class="project-card">
         <div class="project-thumb">
@@ -115,6 +101,9 @@
     text-decoration: none;
     color: inherit;
     display: block;
+    transition:
+      opacity 0.3s ease,
+      transform 0.3s ease;
   }
   .project-role {
     font-size: 0.8rem;
@@ -125,31 +114,3 @@
     opacity: 0.85;
   }
 </style>
-
-<script>
-  (function () {
-    var filterButtons = document.querySelectorAll(".filter-btn");
-    var projectLinks = document.querySelectorAll(".project-link");
-
-    console.log("Filter buttons ditemukan:", filterButtons.length);
-    console.log("Project links ditemukan:", projectLinks.length);
-
-    filterButtons.forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var filterValue = btn.getAttribute("data-filter");
-
-        filterButtons.forEach(function (b) {
-          b.classList.remove("active");
-        });
-        btn.classList.add("active");
-
-        projectLinks.forEach(function (link) {
-          var categories = link.getAttribute("data-category").split(",");
-          var show =
-            filterValue === "all" || categories.indexOf(filterValue) !== -1;
-          link.style.display = show ? "block" : "none";
-        });
-      });
-    });
-  })();
-</script>
